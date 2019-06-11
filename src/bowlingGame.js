@@ -11,7 +11,7 @@ function bowlingGame() {
 
     this.calculateScore = function () {
         let score = 0;
-        if(!bowlingGame.scoreBoard.length){
+        if(isScoreBoardGenerated()){
             return 0;
         }
         for (let frame = 0; frame < 10; frame++) {
@@ -29,6 +29,10 @@ function bowlingGame() {
             }
         }
         return score;
+    }
+
+    function isScoreBoardGenerated() {
+        return !bowlingGame.scoreBoard.length;
     }
 
     function spareBonus() {
