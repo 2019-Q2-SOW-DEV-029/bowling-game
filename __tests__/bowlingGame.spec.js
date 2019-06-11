@@ -11,6 +11,10 @@ describe("Bowling game", () => {
     });
 
     it("should calculate the score for gutter game to 0", () => {
+        for (let roll = 0; roll < 21; roll++) {
+            bowlingGame.roll(0);
+        }
+        
         expect(bowlingGame.calculateScore()).toEqual(0);
     });
 
@@ -24,5 +28,16 @@ describe("Bowling game", () => {
         }
 
         expect(bowlingGame.calculateScore()).toEqual(30);
+    });
+    
+    it("should calculate score with strike bonus", () => {
+        for (let roll = 0; roll < 10; roll++) {
+            bowlingGame.roll(2);
+        }
+        for (let roll = 0; roll < 7; roll++) {
+            bowlingGame.roll(10);
+        }
+
+        expect(bowlingGame.calculateScore()).toEqual(170);
     });
 });
