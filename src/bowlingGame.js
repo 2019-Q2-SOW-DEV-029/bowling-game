@@ -17,7 +17,6 @@ function bowlingGame() {
         if (isScoreBoardGenerated()) {
             bowlingGame.generateScoreBoard();
         }
-        console.log(bowlingGame.scoreBoard)
         for (let frame = 0; frame < 10; frame++) {
             if (isStrike()) {
                 score += constants.MAX_FRAME_SCORE + strikeBonus();
