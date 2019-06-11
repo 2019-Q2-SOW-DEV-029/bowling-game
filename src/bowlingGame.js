@@ -81,11 +81,15 @@ function bowlingGame() {
     this.generateScoreBoard = function () {        
         for (let roll = constants.ZERO; roll < constants.MAX_ROLL; roll++) {
             let score = generateRandomScore(roll);
-            if(roll < constants.LAST_POSSIBLE_ROLL || (isStrike(constants.LAST_FRAME_ROLL) || isSpare(constants.LAST_FRAME_ROLL))){
+            if( roll < constants.LAST_POSSIBLE_ROLL || should21stRollBeThere(roll)){
                 bowlingGame.roll(score);
                 displayScoreBoard(score, roll);
             }
         }
+    }
+
+    function should21stRollBeThere(roll) {
+        return isStrike(constants.LAST_FRAME_ROLL) || isSpare(constants.LAST_FRAME_ROLL);
     }
 
     function displayScoreBoard(score, roll) {
