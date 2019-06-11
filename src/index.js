@@ -5,7 +5,7 @@ var bowlingGame = new BowlingGame();
 window.onload = function() {
     document.getElementById("startGame").addEventListener('click', (event) => {
         event.preventDefault();
-        bowlingGame.calculateScore();
+        bowlingGame.calculateScore(true);
     });
 
 }

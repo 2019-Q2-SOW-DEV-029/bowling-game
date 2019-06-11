@@ -11,10 +11,12 @@ function bowlingGame() {
         bowlingGame.scoreBoard.push(pinsScored);
     }
 
-    this.calculateScore = function () {
+    this.calculateScore = function (resetGame) {
         let score = constants.ZERO;
 
-        if (isScoreBoardGenerated()) {
+        if (isScoreBoardGenerated() || resetGame) {
+            bowlingGame.resetGame();
+
             bowlingGame.generateScoreBoard();
         }
         for (let frame = 0; frame < 10; frame++) {
@@ -34,6 +36,13 @@ function bowlingGame() {
         }
         displayTotalScore(score);
         return score;
+    }
+
+    this.resetGame = function () {
+        document.getElementById("incrementalScore").innerHTML = "";
+        document.getElementById("totalScore").innerHTML = "";
+        bowlingGame.scoreBoard = [];
+        rollPointer = constants.ZERO;
     }
 
     function displayTotalScore(score) {

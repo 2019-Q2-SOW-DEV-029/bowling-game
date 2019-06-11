@@ -87,4 +87,11 @@ describe("Bowling game score generation", () => {
         expect(document.getElementById("totalScore")).not.toBe("");
         expect(document.getElementById("incrementalScore")).not.toBe("");
     });
+
+    it("should reset the game before starting", () => {
+        bowlingGame.resetGame();
+
+        expect(document.getElementById("totalScore").innerHTML).toEqual("");
+        expect(document.getElementById("incrementalScore").innerHTML).toEqual("");
+    });
 });
