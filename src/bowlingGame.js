@@ -82,8 +82,12 @@ function bowlingGame() {
         for (let roll = 0; roll < 21; roll++) {
             let score = generateRandomScore(roll);
             bowlingGame.roll(score);
-            document.getElementById("scoreBoard").append(score + (isEven(roll) ? "  ||  " : " : "));
+            displayScoreBoard(score, roll);
         }
+    }
+
+    function displayScoreBoard(score, roll) {
+        document.getElementById("scoreBoard").append(score + (isEven(roll) ? "  ||  " : " : "));
     }
 
     function generateRandomScore(roll) {
