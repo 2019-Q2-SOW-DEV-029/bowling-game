@@ -85,12 +85,16 @@ function bowlingGame() {
 
     function generateRandomScore(roll) {
         let score;
-        if (roll % 2 !== 0) {
+        if (isEven(roll)) {
             score = Math.floor(Math.random() * (11 - bowlingGame.scoreBoard[roll - 1]));
         }
         else {
             score = Math.floor(Math.random() * 11);
         }
         return score;
+    }
+
+    function isEven(roll) {
+        return roll % 2 !== 0;
     }
 }
