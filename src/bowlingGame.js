@@ -79,11 +79,18 @@ function bowlingGame() {
 
     this.generateScoreBoard = function () {        
         for (let roll = 0; roll < 21; roll++) {
-            bowlingGame.roll(generateRandomScore());
+            bowlingGame.roll(generateRandomScore(roll));
         }
     }
 
-    function generateRandomScore() {
-        return Math.floor(Math.random() * 11);
+    function generateRandomScore(roll) {
+        let score;
+        if (roll % 2 !== 0) {
+            score = Math.floor(Math.random() * (11 - bowlingGame.scoreBoard[roll - 1]));
+        }
+        else {
+            score = Math.floor(Math.random() * 11);
+        }
+        return score;
     }
 }

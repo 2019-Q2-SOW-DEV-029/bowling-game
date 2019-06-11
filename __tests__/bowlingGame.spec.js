@@ -94,4 +94,22 @@ describe("Bowling game score generation", () => {
         expect(document.getElementById("totalScore").innerHTML).toEqual("");
         expect(document.getElementById("incrementalScore").innerHTML).toEqual("");
     });
+
+    it("should generate 2 rolls for a frame such that its sum is less than or equal to 10", () => {
+        bowlingGame.calculateScore();
+        let isValidRoll = false;
+        for (let roll = 0; roll < bowlingGame.scoreBoard.length; roll++) {
+            if (bowlingGame.scoreBoard[roll] !== 10) {
+                if (bowlingGame.scoreBoard[roll] + bowlingGame.scoreBoard[roll + 1] <= 10) {
+                    isValidRoll = true;
+                    roll++;
+                }
+            }
+            else {
+                isValidRoll = true;
+            }
+
+            expect(isValidRoll).toBe(true);
+        }
+    });
 });
