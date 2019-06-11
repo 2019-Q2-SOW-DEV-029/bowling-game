@@ -39,6 +39,7 @@ function bowlingGame() {
     }
 
     this.resetGame = function () {
+        document.getElementById("scoreBoard").innerHTML = "";
         document.getElementById("incrementalScore").innerHTML = "";
         document.getElementById("totalScore").innerHTML = "";
         bowlingGame.scoreBoard = [];
@@ -79,7 +80,9 @@ function bowlingGame() {
 
     this.generateScoreBoard = function () {        
         for (let roll = 0; roll < 21; roll++) {
-            bowlingGame.roll(generateRandomScore(roll));
+            let score = generateRandomScore(roll);
+            bowlingGame.roll(score);
+            document.getElementById("scoreBoard").append(score + (isEven(roll) ? "  ||  " : " : "));
         }
     }
 

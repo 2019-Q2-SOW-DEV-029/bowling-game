@@ -71,6 +71,7 @@ describe("Bowling game score generation", () => {
 
     document.body.innerHTML = ' <div>' +
         '<input type="button" id="startGame" value="Start" />' +
+        '<div id="scoreBoard"></div>' +
         '<div id = "incrementalScore" ></div> ' +
         '<div id="totalScore"></div>' +
         '</div>';
@@ -111,5 +112,12 @@ describe("Bowling game score generation", () => {
 
             expect(isValidRoll).toBe(true);
         }
+    });
+
+    it("should display score board", () => {
+        bowlingGame.calculateScore();
+        let numberOfFramesGenerated = document.getElementById("scoreBoard").innerHTML.split("||").length;
+        
+        expect(numberOfFramesGenerated).toBe(11);
     });
 });
