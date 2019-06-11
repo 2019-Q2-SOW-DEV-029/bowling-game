@@ -52,4 +52,8 @@ describe("Bowling game", () => {
 
         expect(bowlingGame.calculateScore()).toEqual(190);
     });
+
+    it("should not return NaN if the scoreBoard is not generated", () => {
+        expect(bowlingGame.calculateScore()).not.toBe(NaN);
+    });
 });

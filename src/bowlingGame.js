@@ -11,6 +11,9 @@ function bowlingGame() {
 
     this.calculateScore = function () {
         let score = 0;
+        if(!bowlingGame.scoreBoard.length){
+            return 0;
+        }
         for (let frame = 0; frame < 10; frame++) {
             if(isStrike()){
                 score += 10 + strikeBonus();
