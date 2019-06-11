@@ -69,9 +69,22 @@ describe("Bowling game", () => {
 
 describe("Bowling game score generation", () => {
 
-    it("should generate score if the scoreboard is not populated", () => { 
+    document.body.innerHTML = ' <div>' +
+        '<input type="button" id="startGame" value="Start" />' +
+        '<div id = "incrementalScore" ></div> ' +
+        '<div id="totalScore"></div>' +
+        '</div>';
+
+    it("should generate score if the scoreboard is not populated", () => {
         bowlingGame.calculateScore();
 
         expect(bowlingGame.scoreBoard.length).not.toBe(0);
+    });
+
+    it("should display score on the screen", () => {
+        bowlingGame.calculateScore();
+
+        expect(document.getElementById("totalScore")).not.toBe("");
+        expect(document.getElementById("incrementalScore")).not.toBe("");
     });
 });

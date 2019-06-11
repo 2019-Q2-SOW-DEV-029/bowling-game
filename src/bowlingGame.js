@@ -30,7 +30,9 @@ function bowlingGame() {
                 score += frameScore();
                 rollPointer += constants.TWO;
             }
+            document.getElementById("incrementalScore").innerHTML += score + " || ";
         }
+        document.getElementById("totalScore").innerHTML = score;
         return score;
     }
 
@@ -57,7 +59,6 @@ function bowlingGame() {
     function strikeBonus() {
         return bowlingGame.scoreBoard[rollPointer + constants.ONE] + bowlingGame.scoreBoard[rollPointer + constants.TWO];
     }
-
 
     this.generateScoreBoard = function () {
         bowlingGame.scoreBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 3, 4, 5, 6, 7, 8, 9, 10, 5, 5, 5];
