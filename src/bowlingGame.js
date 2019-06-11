@@ -94,7 +94,8 @@ function bowlingGame() {
 
     function generateRandomScore(roll) {
         let score;
-        if (isEven(roll)) {
+        
+        if (isEven(roll) && !isStrike(18)) {
             score = Math.floor(Math.random() * (11 - bowlingGame.scoreBoard[roll - 1]));
         }
         else {
