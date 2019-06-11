@@ -1,31 +1,33 @@
+const constants = require("./helpers/constants");
+
 module.exports = bowlingGame;
 
 function bowlingGame() {
     this.scoreBoard = [];
     let bowlingGame = this;
-    let rollPointer = 0;
+    let rollPointer = constants.ZERO;
 
     this.roll = function (pinsScored) {
         bowlingGame.scoreBoard.push(pinsScored);
     }
 
     this.calculateScore = function () {
-        let score = 0;
-        if(isScoreBoardGenerated()){
-            return 0;
+        let score = constants.ZERO;
+        if (isScoreBoardGenerated()) {
+            return constants.ZERO;
         }
         for (let frame = 0; frame < 10; frame++) {
-            if(isStrike()){
-                score += 10 + strikeBonus();
+            if (isStrike()) {
+                score += constants.MAX_FRAME_SCORE + strikeBonus();
                 rollPointer++;
             }
             else if (isSpare()) {
-                score += 10 + spareBonus();
-                rollPointer +=2;
+                score += constants.MAX_FRAME_SCORE + spareBonus();
+                rollPointer += constants.TWO;
             }
-            else{
+            else {
                 score += frameScore();
-                rollPointer += 2;
+                rollPointer += constants.TWO;
             }
         }
         return score;
@@ -36,22 +38,22 @@ function bowlingGame() {
     }
 
     function spareBonus() {
-        return bowlingGame.scoreBoard[rollPointer + 2];
+        return bowlingGame.scoreBoard[rollPointer + constants.TWO];
     }
 
     function isSpare() {
-        return bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + 1] === 10;
+        return bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + constants.ONE] === constants.MAX_FRAME_SCORE;
     }
 
     function frameScore() {
-        return bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + 1];
+        return bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + constants.ONE];
     }
 
     function isStrike() {
-        return bowlingGame.scoreBoard[rollPointer] === 10;
+        return bowlingGame.scoreBoard[rollPointer] === constants.MAX_FRAME_SCORE;
     }
 
-    function strikeBonus(){
-        return bowlingGame.scoreBoard[rollPointer + 1] + bowlingGame.scoreBoard[rollPointer + 2];
+    function strikeBonus() {
+        return bowlingGame.scoreBoard[rollPointer + constants.ONE] + bowlingGame.scoreBoard[rollPointer + constants.TWO];
     }
 }
