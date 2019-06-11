@@ -14,7 +14,7 @@ describe("Bowling game", () => {
         for (let roll = 0; roll < 21; roll++) {
             bowlingGame.roll(0);
         }
-        
+
         expect(bowlingGame.calculateScore()).toEqual(0);
     });
 
@@ -39,5 +39,17 @@ describe("Bowling game", () => {
         }
 
         expect(bowlingGame.calculateScore()).toEqual(170);
+    });
+
+    it("should calculate score with spare bonus", () => {
+        for (let roll = 0; roll < 21; roll++) {
+            bowlingGame.roll(9);
+            if(roll < 20){
+                roll++;
+                bowlingGame.roll(1);
+            }
+        }
+
+        expect(bowlingGame.calculateScore()).toEqual(190);
     });
 });

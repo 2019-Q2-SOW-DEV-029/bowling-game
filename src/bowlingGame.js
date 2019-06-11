@@ -16,6 +16,10 @@ function bowlingGame() {
                 score += 10 + strikeBonus();
                 rollPointer++;
             }
+            else if (bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + 1] === 10) {
+                score += 10 + bowlingGame.scoreBoard[rollPointer + 2];
+                rollPointer +=2;
+            }
             else{
                 score += frameScore();
                 rollPointer += 2;
