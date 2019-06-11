@@ -75,7 +75,7 @@ describe("Bowling game score generation", () => {
         '<div id="totalScore"></div>' +
         '</div>';
 
-    it("should generate score if the scoreboard is not populated", () => {
+    it("should generate random score if the scoreboard is not populated", () => {
         bowlingGame.calculateScore();
 
         expect(bowlingGame.scoreBoard.length).not.toBe(0);

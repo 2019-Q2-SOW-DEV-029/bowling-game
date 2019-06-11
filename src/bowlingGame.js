@@ -17,6 +17,7 @@ function bowlingGame() {
         if (isScoreBoardGenerated()) {
             bowlingGame.generateScoreBoard();
         }
+        console.log(bowlingGame.scoreBoard)
         for (let frame = 0; frame < 10; frame++) {
             if (isStrike()) {
                 score += constants.MAX_FRAME_SCORE + strikeBonus();
@@ -60,7 +61,9 @@ function bowlingGame() {
         return bowlingGame.scoreBoard[rollPointer + constants.ONE] + bowlingGame.scoreBoard[rollPointer + constants.TWO];
     }
 
-    this.generateScoreBoard = function () {
-        bowlingGame.scoreBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 3, 4, 5, 6, 7, 8, 9, 10, 5, 5, 5];
+    this.generateScoreBoard = function () {        
+        for (let roll = 0; roll < 21; roll++) {
+            bowlingGame.roll(Math.floor(Math.random() * 11));
+        }
     }
 }
