@@ -117,7 +117,20 @@ describe("Bowling game score generation", () => {
     it("should display score board", () => {
         bowlingGame.calculateScore();
         let numberOfFramesGenerated = document.getElementById("scoreBoard").innerHTML.split("||").length;
-        
+
         expect(numberOfFramesGenerated).toBe(11);
+    });
+
+    it("should display 20 rolls when last frame is not strike or spare", () => {
+        bowlingGame.calculateScore();
+        let numberOfOddRolls = document.getElementById("scoreBoard").innerHTML.split(":").length - 1;
+        let isBonusRollPresent = numberOfOddRolls === 11;
+
+        if (bowlingGame.scoreBoard[18] === 10 || bowlingGame.scoreBoard[18] + bowlingGame.scoreBoard[19] === 10) {
+            expect(isBonusRollPresent).toBe(true);
+        }
+        else {
+            expect(isBonusRollPresent).toBe(false);
+        }
     });
 });

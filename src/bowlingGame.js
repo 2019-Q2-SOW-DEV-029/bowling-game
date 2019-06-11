@@ -20,11 +20,11 @@ function bowlingGame() {
             bowlingGame.generateScoreBoard();
         }
         for (let frame = 0; frame < 10; frame++) {
-            if (isStrike()) {
+            if (isStrike(rollPointer)) {
                 score += constants.MAX_FRAME_SCORE + strikeBonus();
                 rollPointer++;
             }
-            else if (isSpare()) {
+            else if (isSpare(rollPointer)) {
                 score += constants.MAX_FRAME_SCORE + spareBonus();
                 rollPointer += constants.TWO;
             }
@@ -62,16 +62,16 @@ function bowlingGame() {
         return bowlingGame.scoreBoard[rollPointer + constants.TWO];
     }
 
-    function isSpare() {
-        return bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + constants.ONE] === constants.MAX_FRAME_SCORE;
+    function isSpare(roll) {
+        return bowlingGame.scoreBoard[roll] + bowlingGame.scoreBoard[roll + constants.ONE] === constants.MAX_FRAME_SCORE;
     }
 
     function frameScore() {
         return bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + constants.ONE];
     }
 
-    function isStrike() {
-        return bowlingGame.scoreBoard[rollPointer] === constants.MAX_FRAME_SCORE;
+    function isStrike(roll) {
+        return bowlingGame.scoreBoard[roll] === constants.MAX_FRAME_SCORE;
     }
 
     function strikeBonus() {
@@ -81,8 +81,10 @@ function bowlingGame() {
     this.generateScoreBoard = function () {        
         for (let roll = 0; roll < 21; roll++) {
             let score = generateRandomScore(roll);
-            bowlingGame.roll(score);
-            displayScoreBoard(score, roll);
+            if(roll < 20 || (isStrike(18) || isSpare(18))){
+                bowlingGame.roll(score);
+                displayScoreBoard(score, roll);
+            }
         }
     }
 
