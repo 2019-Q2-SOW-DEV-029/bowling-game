@@ -19,7 +19,7 @@ function bowlingGame() {
 
             bowlingGame.generateScoreBoard();
         }
-        for (let frame = 0; frame < 10; frame++) {
+        for (let frame = constants.ZERO; frame < constants.NUMBER_OF_FRAMES; frame++) {
             if (isStrike(rollPointer)) {
                 score += constants.MAX_FRAME_SCORE + strikeBonus();
                 rollPointer++;
@@ -39,19 +39,19 @@ function bowlingGame() {
     }
 
     this.resetGame = function () {
-        document.getElementById("scoreBoard").innerHTML = "";
-        document.getElementById("incrementalScore").innerHTML = "";
-        document.getElementById("totalScore").innerHTML = "";
+        document.getElementById(constants.SCOREBOARD).innerHTML = constants.EMPTY_STRING;
+        document.getElementById(constants.INCREMENTAL_SCORE).innerHTML = constants.EMPTY_STRING;
+        document.getElementById(constants.TOTAL_SCORE).innerHTML = constants.EMPTY_STRING;
         bowlingGame.scoreBoard = [];
         rollPointer = constants.ZERO;
     }
 
     function displayTotalScore(score) {
-        document.getElementById("totalScore").innerHTML = score;
+        document.getElementById(constants.TOTAL_SCORE).innerHTML = score;
     }
 
     function displayIncrementalScore(score) {
-        document.getElementById("incrementalScore").innerHTML += score + " || ";
+        document.getElementById(constants.INCREMENTAL_SCORE).innerHTML += score + constants.FRAME_DELIMITER;
     }
 
     function isScoreBoardGenerated() {
@@ -79,9 +79,9 @@ function bowlingGame() {
     }
 
     this.generateScoreBoard = function () {        
-        for (let roll = 0; roll < 21; roll++) {
+        for (let roll = constants.ZERO; roll < constants.MAX_ROLL; roll++) {
             let score = generateRandomScore(roll);
-            if(roll < 20 || (isStrike(18) || isSpare(18))){
+            if(roll < constants.LAST_POSSIBLE_ROLL || (isStrike(constants.LAST_FRAME_ROLL) || isSpare(constants.LAST_FRAME_ROLL))){
                 bowlingGame.roll(score);
                 displayScoreBoard(score, roll);
             }
@@ -89,22 +89,22 @@ function bowlingGame() {
     }
 
     function displayScoreBoard(score, roll) {
-        document.getElementById("scoreBoard").append(score + (isEven(roll) ? "  ||  " : " : "));
+        document.getElementById(constants.SCOREBOARD).append(score + (isEven(roll) ? constants.FRAME_DELIMITER : constants.ROLL_DELIMITER));
     }
 
     function generateRandomScore(roll) {
         let score;
         
-        if (isEven(roll) && !isStrike(18)) {
-            score = Math.floor(Math.random() * (11 - bowlingGame.scoreBoard[roll - 1]));
+        if (isEven(roll) && !isStrike(constants.LAST_FRAME_ROLL)) {
+            score = Math.floor(Math.random() * (constants.ELEVEN - bowlingGame.scoreBoard[roll - constants.ONE]));
         }
         else {
-            score = Math.floor(Math.random() * 11);
+            score = Math.floor(Math.random() * constants.ELEVEN);
         }
         return score;
     }
 
     function isEven(roll) {
-        return roll % 2 !== 0;
+        return roll % constants.TWO !== constants.ZERO;
     }
 }
