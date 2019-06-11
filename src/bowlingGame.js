@@ -16,8 +16,8 @@ function bowlingGame() {
                 score += 10 + strikeBonus();
                 rollPointer++;
             }
-            else if (bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + 1] === 10) {
-                score += 10 + bowlingGame.scoreBoard[rollPointer + 2];
+            else if (isSpare()) {
+                score += 10 + spareBonus();
                 rollPointer +=2;
             }
             else{
@@ -26,6 +26,14 @@ function bowlingGame() {
             }
         }
         return score;
+    }
+
+    function spareBonus() {
+        return bowlingGame.scoreBoard[rollPointer + 2];
+    }
+
+    function isSpare() {
+        return bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + 1] === 10;
     }
 
     function frameScore() {
