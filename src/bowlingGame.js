@@ -13,8 +13,9 @@ function bowlingGame() {
 
     this.calculateScore = function () {
         let score = constants.ZERO;
+
         if (isScoreBoardGenerated()) {
-            return constants.ZERO;
+            bowlingGame.generateScoreBoard();
         }
         for (let frame = 0; frame < 10; frame++) {
             if (isStrike()) {
@@ -55,5 +56,10 @@ function bowlingGame() {
 
     function strikeBonus() {
         return bowlingGame.scoreBoard[rollPointer + constants.ONE] + bowlingGame.scoreBoard[rollPointer + constants.TWO];
+    }
+
+
+    this.generateScoreBoard = function () {
+        bowlingGame.scoreBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 3, 4, 5, 6, 7, 8, 9, 10, 5, 5, 5];
     }
 }

@@ -29,7 +29,7 @@ describe("Bowling game", () => {
 
         expect(bowlingGame.calculateScore()).toEqual(30);
     });
-    
+
     it("should calculate score with strike bonus", () => {
         for (let roll = 0; roll < 10; roll++) {
             bowlingGame.roll(2);
@@ -44,7 +44,7 @@ describe("Bowling game", () => {
     it("should calculate score with spare bonus", () => {
         for (let roll = 0; roll < 21; roll++) {
             bowlingGame.roll(9);
-            if(roll < 20){
+            if (roll < 20) {
                 roll++;
                 bowlingGame.roll(1);
             }
@@ -63,5 +63,15 @@ describe("Bowling game", () => {
         }
 
         expect(bowlingGame.calculateScore()).toEqual(300);
+    });
+
+});
+
+describe("Bowling game score generation", () => {
+
+    it("should generate score if the scoreboard is not populated", () => { 
+        bowlingGame.calculateScore();
+
+        expect(bowlingGame.scoreBoard.length).not.toBe(0);
     });
 });
