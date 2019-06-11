@@ -56,4 +56,12 @@ describe("Bowling game", () => {
     it("should not return NaN if the scoreBoard is not generated", () => {
         expect(bowlingGame.calculateScore()).not.toBe(NaN);
     });
+
+    it("should calculate score for perfect game", () => {
+        for (let roll = 0; roll < 12; roll++) {
+            bowlingGame.roll(10);
+        }
+
+        expect(bowlingGame.calculateScore()).toEqual(300);
+    });
 });
