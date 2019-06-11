@@ -12,15 +12,27 @@ function bowlingGame() {
     this.calculateScore = function () {
         let score = 0;
         for (let frame = 0; frame < 10; frame++) {
-            if(bowlingGame.scoreBoard[rollPointer] === 10){
-                score += 10 + bowlingGame.scoreBoard[rollPointer + 1] + bowlingGame.scoreBoard[rollPointer + 2];
+            if(isStrike()){
+                score += 10 + strikeBonus();
                 rollPointer++;
             }
             else{
-                score += bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + 1];
+                score += frameScore();
                 rollPointer += 2;
             }
         }
         return score;
+    }
+
+    function frameScore() {
+        return bowlingGame.scoreBoard[rollPointer] + bowlingGame.scoreBoard[rollPointer + 1];
+    }
+
+    function isStrike() {
+        return bowlingGame.scoreBoard[rollPointer] === 10;
+    }
+
+    function strikeBonus(){
+        return bowlingGame.scoreBoard[rollPointer + 1] + bowlingGame.scoreBoard[rollPointer + 2];
     }
 }
