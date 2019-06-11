@@ -31,10 +31,18 @@ function bowlingGame() {
                 score += frameScore();
                 rollPointer += constants.TWO;
             }
-            document.getElementById("incrementalScore").innerHTML += score + " || ";
+            displayIncrementalScore(score);
         }
-        document.getElementById("totalScore").innerHTML = score;
+        displayTotalScore(score);
         return score;
+    }
+
+    function displayTotalScore(score) {
+        document.getElementById("totalScore").innerHTML = score;
+    }
+
+    function displayIncrementalScore(score) {
+        document.getElementById("incrementalScore").innerHTML += score + " || ";
     }
 
     function isScoreBoardGenerated() {
@@ -63,7 +71,11 @@ function bowlingGame() {
 
     this.generateScoreBoard = function () {        
         for (let roll = 0; roll < 21; roll++) {
-            bowlingGame.roll(Math.floor(Math.random() * 11));
+            bowlingGame.roll(generateRandomScore());
         }
+    }
+
+    function generateRandomScore() {
+        return Math.floor(Math.random() * 11);
     }
 }
