@@ -26,5 +26,13 @@ To run the test cases, execute following command:
 To launch this application go to this link:
 <b>http://localhost:8085/</b>
 
+_______________________________________________________________________________
+
+<b>Note:</b>
+* Please note that the score board is generated randomly on click of Start button.
+* Since the scores are generated randomly, it is possible when you run the tests the coverage doesn't show 100% as some of the conditions might have been left out because of random numbers. But if it is run for a few more times it would be 100% at least one of the times. 
+* Since the probability of having perfect game from random score is bleak, extra test for perfect game and all spare game is added.
+* Incremental score, displayed on UI, is not the frame score but the addition of scores till that particular frame. I have added it for the ease of calculating while verification. 
+
 
 
